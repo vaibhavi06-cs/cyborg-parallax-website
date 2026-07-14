@@ -10,7 +10,7 @@ An immersive single-page website built to demonstrate **parallax scrolling**, sm
 https://vaibhavi06-cs.github.io/cyborg-parallax-website/
 
 🎥 **Demo Video**  
-*(Add your demo video link here after uploading.)*
+https://drive.google.com/file/d/1c2V3dAkJ1_8eUGH4o_jIo1MpSK9mzCDv/view?usp=sharing
 
 </div>
 

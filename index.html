@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBORG 2077 — The Future Has Awakened</title>
+<meta name="description" content="CYBORG 2077 — an autonomous intelligence platform for the post-human era.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="loader" id="loader">
+  <div class="loader-core">
+    <svg viewBox="0 0 100 100" class="loader-ring"><circle cx="50" cy="50" r="42"/></svg>
+    <span class="loader-pct" id="loaderPct">00</span>
+  </div>
+  <div class="loader-label">INITIALIZING NEURAL CORE</div>
+</div>
+
+<!-- ============ CURSOR GLOW ============ -->
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress"><div class="scroll-progress-bar" id="scrollBar"></div></div>
+
+<!-- ============ NOISE OVERLAY ============ -->
+<div class="noise-overlay"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-mark">◈</span>
+      <span class="nav-logo-text">CYBORG<span>//2077</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#intelligence"><span class="nav-idx">01</span>Intelligence</a>
+      <a href="#machine-learning"><span class="nav-idx">02</span>Learning</a>
+      <a href="#security"><span class="nav-idx">03</span>Security</a>
+      <a href="#robotics"><span class="nav-idx">04</span>Robotics</a>
+      <a href="#timeline"><span class="nav-idx">05</span>Timeline</a>
+    </nav>
+    <a href="#contact" class="nav-cta">
+      <span>Connect</span>
+    </a>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#intelligence">01 / Intelligence</a>
+  <a href="#machine-learning">02 / Learning</a>
+  <a href="#security">03 / Security</a>
+  <a href="#robotics">04 / Robotics</a>
+  <a href="#timeline">05 / Timeline</a>
+  <a href="#contact">06 / Connect</a>
+</div>
+
+<main id="smooth-wrapper">
+<div id="smooth-content">
+
+  <!-- ============================================================ -->
+  <!-- HERO -->
+  <!-- ============================================================ -->
+  <section class="hero" id="hero">
+    <canvas id="starCanvas" class="hero-canvas"></canvas>
+    <div class="hero-fog" data-speed="-0.15"></div>
+
+    <div class="grid-floor" id="gridFloor" data-speed="0.35"></div>
+
+    <div class="hero-planet-wrap" id="planetLayer" data-speed="-0.3">
+      <div class="planet">
+        <div class="planet-ring"></div>
+        <div class="planet-surface"></div>
+        <div class="planet-glow"></div>
+      </div>
+    </div>
+
+    <div class="hero-content" data-speed="0.12">
+      <div class="hero-eyebrow" data-reveal>
+        <span class="dot"></span> SYSTEM STATUS — <span class="status-online">ONLINE</span>
+      </div>
+
+      <h1 class="glitch-title" data-text="CYBORG 2077">
+        <span class="gt-layer gt-main">CYBORG 2077</span>
+        <span class="gt-layer gt-glitch1" aria-hidden="true">CYBORG 2077</span>
+        <span class="gt-layer gt-glitch2" aria-hidden="true">CYBORG 2077</span>
+      </h1>
+
+      <p class="hero-subtitle" data-reveal>The Future Has Awakened</p>
+
+      <p class="hero-desc" data-reveal>
+        A sentient intelligence platform fused with quantum cognition, autonomous robotics
+        and neural security — engineered for a world that no longer waits for humans alone.
+      </p>
+
+      <div class="hero-cta-row" data-reveal>
+        <a href="#intelligence" class="btn btn-primary">
+          <span>Activate Interface</span>
+          <i class="btn-glow"></i>
+        </a>
+        <a href="#timeline" class="btn btn-ghost">
+          <span>View Timeline</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cyborg figure -->
+    <div class="cyborg-wrap" id="cyborgWrap" data-speed="0.2">
+      <svg class="cyborg-svg" viewBox="0 0 640 820" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#9dfff4" stop-opacity="1"/>
+            <stop offset="45%" stop-color="#00e5ff" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="chassisGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1b2440"/>
+            <stop offset="100%" stop-color="#0a0e1c"/>
+          </linearGradient>
+          <linearGradient id="rimGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#00e5ff"/>
+            <stop offset="100%" stop-color="#9d4dff"/>
+          </linearGradient>
+        </defs>
+
+        <!-- halo rings -->
+        <g class="cyborg-halo">
+          <circle cx="320" cy="230" r="185" fill="none" stroke="url(#rimGrad)" stroke-opacity="0.18" stroke-width="1"/>
+          <circle cx="320" cy="230" r="215" fill="none" stroke="url(#rimGrad)" stroke-opacity="0.10" stroke-width="1"/>
+        </g>
+
+        <!-- shoulders / chassis -->
+        <path class="c-chassis" d="M150 820V560c0-90 45-150 60-170 40-52 80-64 110-66v496z" fill="url(#chassisGrad)" stroke="#2a3860" stroke-width="1.5"/>
+        <path class="c-chassis" d="M490 820V560c0-90-45-150-60-170-40-52-80-64-110-66v496z" fill="url(#chassisGrad)" stroke="#2a3860" stroke-width="1.5"/>
+
+        <!-- neck -->
+        <rect x="290" y="300" width="60" height="70" rx="10" fill="url(#chassisGrad)" stroke="#2a3860"/>
+
+        <!-- chest core -->
+        <g class="c-core-group">
+          <circle cx="320" cy="560" r="70" fill="url(#coreGlow)" opacity="0.55"/>
+          <path d="M320 500 L365 530 L365 590 L320 620 L275 590 L275 530 Z" fill="#0d1428" stroke="url(#rimGrad)" stroke-width="2"/>
+          <circle cx="320" cy="560" r="20" fill="#9dfff4" class="c-core-pulse"/>
+        </g>
+
+        <!-- head -->
+        <g class="c-head">
+          <path d="M250 150c0-55 32-100 70-100s70 45 70 100-8 145-70 145-70-90-70-145z" fill="url(#chassisGrad)" stroke="url(#rimGrad)" stroke-width="2"/>
+          <!-- visor -->
+          <path d="M268 155c0-30 22-46 52-46s52 16 52 46-14 44-52 44-52-14-52-44z" fill="#020407"/>
+          <path class="c-visor-scan" d="M270 155h100" stroke="#00e5ff" stroke-width="4" stroke-linecap="round"/>
+          <circle class="c-eye" cx="298" cy="155" r="5" fill="#9dfff4"/>
+          <circle class="c-eye" cx="342" cy="155" r="5" fill="#9dfff4"/>
+          <!-- antenna -->
+          <line x1="320" y1="50" x2="320" y2="20" stroke="url(#rimGrad)" stroke-width="2"/>
+          <circle cx="320" cy="16" r="6" fill="#9d4dff" class="c-antenna-tip"/>
+        </g>
+
+        <!-- circuit lines on chassis -->
+        <g class="c-circuits" stroke="#00e5ff" stroke-opacity="0.4" stroke-width="1" fill="none">
+          <path d="M190 620h50l15 20h40"/>
+          <path d="M450 620h-50l-15 20h-40"/>
+          <path d="M180 700h60M460 700h-60"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="scroll-indicator" data-reveal>
+      <span>SCROLL</span>
+      <div class="scroll-line"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 01 ARTIFICIAL INTELLIGENCE -->
+  <!-- ============================================================ -->
+  <section class="section ai-section" id="intelligence">
+    <div class="section-bg-glow glow-blue"></div>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow mono">// 01_INTELLIGENCE</span>
+        <h2 class="section-title">A mind that never stops <span class="text-gradient">learning.</span></h2>
+        <p class="section-lede">Three cognition layers work in constant parallel — perceiving, reasoning, and acting
+          faster than any biological neural pathway.</p>
+      </div>
+
+      <div class="card-grid three">
+        <article class="glass-card" data-tilt>
+          <div class="card-icon float-icon"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5c0 1.6.8 3 2 3.9V13a3 3 0 0 0 3 3 3 3 0 0 0 3-3v-2.1a5 5 0 0 0 2-3.9 5 5 0 0 0-5-5z"/><path d="M9 19h6M10 22h4"/></svg></div>
+          <h3>Cognitive Core</h3>
+          <p>A self-optimizing reasoning engine that restructures its own architecture in real time to match the shape of the problem.</p>
+          <span class="card-tag mono">NEURAL // ADAPTIVE</span>
+        </article>
+
+        <article class="glass-card" data-tilt>
+          <div class="card-icon float-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+          <h3>Perception Grid</h3>
+          <p>Multi-sensor fusion resolves visual, acoustic and thermal streams into a single unified world-model, updated every 4ms.</p>
+          <span class="card-tag mono">VISION // FUSION</span>
+        </article>
+
+        <article class="glass-card" data-tilt>
+          <div class="card-icon float-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v10H4z"/><path d="M8 20h8M12 14v6"/></svg></div>
+          <h3>Decision Lattice</h3>
+          <p>Thousands of weighted futures are simulated per second, collapsing into the single optimal action — before you finish asking.</p>
+          <span class="card-tag mono">PREDICT // ACT</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 02 MACHINE LEARNING -->
+  <!-- ============================================================ -->
+  <section class="section ml-section" id="machine-learning">
+    <div class="holo-bg" data-speed="-0.25"></div>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow mono">// 02_MACHINE_LEARNING</span>
+        <h2 class="section-title">The training loop <span class="text-gradient">never sleeps.</span></h2>
+        <p class="section-lede">Every interaction across the network feeds back into the core — a closed loop of ingest, train, deploy, refine.</p>
+      </div>
+
+      <div class="ml-flow" id="mlFlow">
+        <svg class="ml-flow-lines" id="mlLines" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path id="mlLinePath" d="M100,60 L300,60 L500,60 L700,60 L900,60 L1100,60" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+          <defs>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#00e5ff" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#00e5ff" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#9d4dff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div class="ml-node" data-node="1">
+          <div class="ml-node-ring"><span class="mono">01</span></div>
+          <h4>Ingest</h4>
+          <p>Raw signal capture</p>
+        </div>
+        <div class="ml-node" data-node="2">
+          <div class="ml-node-ring"><span class="mono">02</span></div>
+          <h4>Train</h4>
+          <p>Distributed gradient sync</p>
+        </div>
+        <div class="ml-node" data-node="3">
+          <div class="ml-node-ring"><span class="mono">03</span></div>
+          <h4>Validate</h4>
+          <p>Adversarial testing</p>
+        </div>
+        <div class="ml-node" data-node="4">
+          <div class="ml-node-ring"><span class="mono">04</span></div>
+          <h4>Deploy</h4>
+          <p>Edge inference push</p>
+        </div>
+        <div class="ml-node" data-node="5">
+          <div class="ml-node-ring"><span class="mono">05</span></div>
+          <h4>Refine</h4>
+          <p>Feedback re-ingestion</p>
+        </div>
+      </div>
+
+      <div class="code-float-wrap" id="codeFloatWrap">
+        <div class="code-snippet">tensor.grad(loss) → Δw</div>
+        <div class="code-snippet">epoch[482] acc=0.9982</div>
+        <div class="code-snippet">model.sync(nodes=2048)</div>
+        <div class="code-snippet">infer(x) : 3.2ms</div>
+        <div class="code-snippet">loss ↓ 0.0004</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 03 CYBER SECURITY -->
+  <!-- ============================================================ -->
+  <section class="section security-section" id="security">
+    <canvas class="binary-rain" id="binaryRain"></canvas>
+    <div class="section-bg-glow glow-purple"></div>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow mono">// 03_CYBER_SECURITY</span>
+        <h2 class="section-title">Nothing gets through <span class="text-gradient">the shield.</span></h2>
+        <p class="section-lede">A self-healing perimeter watches every packet, every process, every anomaly — in real time, at planetary scale.</p>
+      </div>
+
+      <div class="security-grid">
+        <div class="radar-wrap" data-speed="0.18">
+          <div class="radar">
+            <div class="radar-rings"></div>
+            <div class="radar-sweep"></div>
+            <span class="radar-blip" style="--x:30%; --y:40%; --d:0.4s"></span>
+            <span class="radar-blip" style="--x:65%; --y:25%; --d:1.1s"></span>
+            <span class="radar-blip" style="--x:55%; --y:70%; --d:1.8s"></span>
+            <span class="radar-blip" style="--x:80%; --y:60%; --d:2.4s"></span>
+            <div class="radar-core"></div>
+          </div>
+          <div class="hud-label mono">THREAT RADAR // ACTIVE</div>
+        </div>
+
+        <div class="shield-wrap" data-speed="-0.12">
+          <svg viewBox="0 0 200 220" class="shield-svg">
+            <defs>
+              <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00e5ff"/>
+                <stop offset="100%" stop-color="#9d4dff"/>
+              </linearGradient>
+            </defs>
+            <path class="shield-path" d="M100 10 L180 45 V110 C180 165 145 200 100 215 C55 200 20 165 20 110 V45 Z" fill="rgba(0,229,255,0.05)" stroke="url(#shieldGrad)" stroke-width="2.5"/>
+            <path class="shield-check" d="M65 110 L90 140 L140 80" fill="none" stroke="#9dfff4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="shield-pulse-ring"></div>
+        </div>
+
+        <div class="hud-panel" data-speed="0.1">
+          <div class="hud-row"><span>FIREWALL</span><span class="hud-val ok">SECURE</span></div>
+          <div class="hud-row"><span>INTRUSIONS BLOCKED</span><span class="hud-val counter" data-count="184203">0</span></div>
+          <div class="hud-row"><span>ENCRYPTION</span><span class="hud-val ok">AES-4096</span></div>
+          <div class="hud-row"><span>NODES MONITORED</span><span class="hud-val counter" data-count="52840">0</span></div>
+          <div class="hud-row"><span>LATENCY</span><span class="hud-val">0.8ms</span></div>
+        </div>
+      </div>
+
+      <div class="network-lines" id="networkLines"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 04 ROBOTICS -->
+  <!-- ============================================================ -->
+  <section class="section robotics-section" id="robotics">
+    <div class="blueprint-bg" data-speed="-0.3"></div>
+    <div class="section-bg-glow glow-cyan"></div>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow mono">// 04_ROBOTICS</span>
+        <h2 class="section-title">Precision built for <span class="text-gradient">a physical world.</span></h2>
+        <p class="section-lede">Servo-actuated limbs translate cognition into motion accurate to the micron — assembling, repairing, exploring.</p>
+      </div>
+
+      <div class="robotics-layout">
+        <div class="robot-arm-wrap" data-speed="0.15">
+          <svg viewBox="0 0 400 400" class="robot-arm-svg" id="robotArmSvg">
+            <circle cx="80" cy="340" r="46" fill="#0d1428" stroke="#2a3860" stroke-width="2"/>
+            <circle cx="80" cy="340" r="10" fill="#00e5ff"/>
+            <g id="armSeg1" style="transform-origin:80px 340px;">
+              <rect x="72" y="200" width="16" height="140" rx="8" fill="url(#chassisGrad)" stroke="#2a3860"/>
+              <circle cx="80" cy="200" r="20" fill="#0d1428" stroke="#00e5ff" stroke-width="2"/>
+              <g id="armSeg2" style="transform-origin:80px 200px;">
+                <rect x="72" y="90" width="16" height="110" rx="8" fill="url(#chassisGrad)" stroke="#2a3860"/>
+                <circle cx="80" cy="90" r="16" fill="#0d1428" stroke="#9d4dff" stroke-width="2"/>
+                <g id="armSeg3" style="transform-origin:80px 90px;">
+                  <rect x="30" y="70" width="100" height="16" rx="6" fill="url(#chassisGrad)" stroke="#2a3860"/>
+                  <path d="M30 78 L10 65 M30 78 L10 91" stroke="#00e5ff" stroke-width="4" stroke-linecap="round" id="armClaw"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+          <div class="gear gear-1"></div>
+          <div class="gear gear-2"></div>
+          <div class="gear gear-3"></div>
+        </div>
+
+        <div class="card-grid two">
+          <article class="glass-card" data-tilt>
+            <div class="card-icon float-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+            <h3>Actuation Systems</h3>
+            <p>Torque-adaptive joints recalibrate 1,000 times per second, matching force to material with zero perceptible lag.</p>
+            <span class="card-tag mono">SERVO // 0.01mm</span>
+          </article>
+          <article class="glass-card" data-tilt>
+            <div class="card-icon float-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></div>
+            <h3>Autonomous Fleets</h3>
+            <p>Swarm-coordinated units share a single distributed spatial map, dividing labor without central command.</p>
+            <span class="card-tag mono">SWARM // SYNC</span>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 05 FUTURE TIMELINE -->
+  <!-- ============================================================ -->
+  <section class="section timeline-section" id="timeline">
+    <div class="section-bg-glow glow-purple"></div>
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow mono">// 05_TIMELINE</span>
+        <h2 class="section-title">2026 <span class="text-gradient">→</span> 2050</h2>
+        <p class="section-lede">The roadmap from assistive intelligence to fully autonomous civilization-scale systems.</p>
+      </div>
+
+      <div class="timeline" id="timelineTrack">
+        <div class="timeline-line"><div class="timeline-line-fill" id="timelineFill"></div></div>
+
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <span class="mono year">2026</span>
+            <h3>Cognitive Assist</h3>
+            <p>AI copilots embed into every workflow, augmenting human decision-making in real time.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <span class="mono year">2032</span>
+            <h3>Autonomous Labor</h3>
+            <p>General-purpose robotics take over hazardous and repetitive physical work at global scale.</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <span class="mono year">2038</span>
+            <h3>Distributed Cognition</h3>
+            <p>Millions of edge nodes fuse into a single latent reasoning substrate spanning the globe.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <span class="mono year">2044</span>
+            <h3>Synthetic Biology Fusion</h3>
+            <p>Neural interfaces merge biological and synthetic cognition into a single continuous system.</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <span class="mono year">2050</span>
+            <h3>Post-Human Civilization</h3>
+            <p>Intelligence, biological and artificial, operates as one civilization-scale organism.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT / FOOTER -->
+  <!-- ============================================================ -->
+  <footer class="footer" id="contact">
+    <div class="footer-fog" data-speed="-0.2"></div>
+    <div class="container">
+      <div class="footer-glass glass-card">
+        <span class="eyebrow mono">// 06_CONNECT</span>
+        <h2 class="footer-glow-text">THE FUTURE IS NOW</h2>
+        <p class="footer-lede">Interface with the core. Deployment begins the moment you reach out.</p>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+          </div>
+          <textarea rows="3" placeholder="Transmit your message..." required></textarea>
+          <button type="submit" class="btn btn-primary">
+            <span>Send Transmission</span>
+            <i class="btn-glow"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-logo">
+          <span class="nav-logo-mark">◈</span> CYBORG<span>//2077</span>
+        </div>
+
+        <div class="social-icons">
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+          <a href="#" aria-label="Github"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.69 0 3.84-2.35 4.68-4.58 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4 4h4v16H4zM4 4l4 0M11 9h4v11h-4zM11 9c0-3 5-3 5 0v11h-4"/></svg></a>
+          <a href="#" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M6 8c4-2 8-2 12 0M5 8c-2 5-2 8 0 12 2-1 3-2 4-3M19 8c2 5 2 8 0 12-2-1-3-2-4-3M9 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM15 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
+        </div>
+
+        <div class="footer-meta mono">© 2026—2050 CYBORG SYSTEMS. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</main>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

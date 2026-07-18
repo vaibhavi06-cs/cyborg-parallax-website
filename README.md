@@ -7,7 +7,7 @@
 An immersive single-page website built to demonstrate **parallax scrolling**, smooth animations, and a futuristic cyberpunk user interface.
 
 🌐 **Live Website**  
-https://vaibhavi06-cs.github.io/cyborg-parallax-website/
+https://codex-binary.github.io/cyborg-parallax-website/
 
 🎥 **Demo Video**  
 https://drive.google.com/file/d/1c2V3dAkJ1_8eUGH4o_jIo1MpSK9mzCDv/view?usp=sharing
